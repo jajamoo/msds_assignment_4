@@ -7,13 +7,13 @@
 library(plyr)
 library(gdata)
 #setwd("C:/MSDS 6306-FALL2016/404/Live session 06")
-setwd("G://onlineSchool//SMU//MSDS6306//lectureNotes//week5")
+#setwd("G://onlineSchool//SMU//MSDS6306//lectureNotes//week5")
 ## You need a perl interpreter to do this on Windows.
 ## It's automatic in Mac
 #bk <- read.xls("rollingsales_brooklyn.xls",pattern="BOROUGH")
 
 # So, save the file as a csv and use read.csv instead
-bk <- read.csv("rollingsales_brooklyn.csv",skip=4,header=TRUE)
+bk <- read.csv("../data/rollingsales_brooklyn.csv",skip=4,header=TRUE)
 
 ## Check the data
 head(bk)
@@ -57,7 +57,7 @@ dim(bk.homes)
 
 # TODO: complete plot() with log10 of bk.homes$gross.sqft,bk.homes$sale.price.n
 #   as above "bk.sale"
-plot()
+plot(log10(bk.homes$gross.sqft),log10(bk.homes$sale.price.n))
 summary(bk.homes[which(bk.homes$sale.price.n<100000),])
 
 
@@ -65,6 +65,6 @@ summary(bk.homes[which(bk.homes$sale.price.n<100000),])
 bk.homes$outliers <- (log10(bk.homes$sale.price.n) <=5) + 0
 
 # TODO: find out homes that meets bk.homes$outliers==0
-bk.homes <- bk.homes[which(),]
+bk.homes <- bk.homes[which(bk.homes$outliers==0),]
 
 plot(log10(bk.homes$gross.sqft),log10(bk.homes$sale.price.n))
