@@ -32,10 +32,10 @@ count(is.na(bk$SALE.PRICE.N))
 names(bk) <- tolower(names(bk)) # make all variable names lower case
 
 ## TODO: Get rid of leading digits bk$gross.square.feet as above bk$SALE.PRICE
-bk$gross.sqft <- as.numeric()
+bk$gross.sqft <- as.numeric(gsub("[^[:digit:]]","", bk$SALE.PRICE))
 
 # TODO: Get rid of leading digits of bk$land.sqft as above bk$SALE.PRICE
-bk$land.sqft <- 
+bk$land.sqft <- as.numeric(gsub("[^[:digit:]]","", bk$SALE.PRICE))
   
 bk$year.built <- as.numeric(as.character(bk$year.built))
 
